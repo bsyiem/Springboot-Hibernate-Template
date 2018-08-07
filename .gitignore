@@ -1,5 +1,2 @@
-GEM/bin/
-GEM/build/
-*.hprof
-*.project
-
+bin/
+build/
