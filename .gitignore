@@ -1,0 +1,5 @@
+GEM/bin/
+GEM/build/
+*.hprof
+*.project
+
