@@ -6,6 +6,11 @@
 
 <html>
 	<head>
+		
+		<!-- This is necessary for csrf related issues that would deny ajax request -->
+		<meta name="_csrf" content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="${_csrf.headerName}"/>
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 		<!-- bootstrap meta -->
@@ -33,7 +38,7 @@
 		  		
   		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script type = "text/javascript" src = /js/DatePicker.js></script>
+		<script type = "text/javascript" src = "/js/DatePicker.js"></script>
 		
 		<!-- js to check which navbar link is active -->
 		<script type = "text/javascript" src = /js/NavBarActive.js></script>
@@ -41,6 +46,13 @@
 		<!-- hides the navBar on smaller devices when onscreen keyboard is present -->
 		<script type = "text/javascript" src = /js/MobileNavBarHide.js></script>
 				
+		<!-- JQuery DataTable -->		
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>	
+		
+		<!-- Ajax send request that handles csrf token related issues -->
+		<script type= "text/javascript" src = "/js/AjaxRequest.js"></script>
+		
 		<sitemesh:write property='head'/>
 	</head>
 	<body>

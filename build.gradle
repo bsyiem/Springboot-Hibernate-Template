@@ -100,4 +100,4 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'zorb.RunSpring'
+mainClassName = 'messageNotification.RunSpring'
