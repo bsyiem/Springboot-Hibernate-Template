@@ -17,15 +17,15 @@ $(document).ready(function() {
             "dataSrc": ""
         },
         "columns": [
-            { 
-            	"data": "email" 
+            {
+            	"data": "email"
             },
-            { 
+            {
             	"render" : function (data,type,row){
             		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"\"></div>";
             		for(var i = 0;i<row.roles.length;i++){
         				if(row.roles[i].role == "ADMIN"){
-        					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"\" disabled></div>";  					
+        					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"\" disabled></div>";
         				}
         			}
             		return checkBox;
@@ -33,26 +33,27 @@ $(document).ready(function() {
             }
         ]
     });
-	
-	
+
+
 	//Onclick of bottom nav-bar button, submit our datatable form
 	$('#datatable_form_submit').on('click',function(e){
 		e.preventDefault();
-		$('#user_enabled_form').submit();
+		$('#delete_user_form').submit();
+    dataTable.ajax.reload(null,false);
 	});
-	
+
 	//submit form via ajax post
-	$('#user_enabled_form').on('submit',function(e){
+	$('#delete_user_form').on('submit',function(e){
 		e.preventDefault();
-		
+
 		//var data = dataTable.$('input,select,textarea').serializeArray(); //used for input,select and textarea
-		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag 
+		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag
 
 		sendData("/admin/removeUsers","POST",data);
 
 		alert("Users have been deleted");
 	});
-	
+
 } );
 </script>
 
@@ -63,8 +64,8 @@ $(document).ready(function() {
 
 <div id = "user" style="display:hidden">${user}</div>
 <div class ="container-fluid authenticated-margin">
-	<form id = "user_enabled_form">
-	
+	<form id = "delete_user_form">
+
 		<table id="user_table" class="table table-striped table-bordered">
 		    <thead>
 		        <tr>
@@ -72,7 +73,7 @@ $(document).ready(function() {
 		            <th>SELECT TO DELETE</th>
 		        </tr>
 		    </thead>
-		</table>	
+		</table>
 	</form>
 </div>
 </body>

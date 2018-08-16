@@ -19,10 +19,10 @@ $(document).ready(function() {
             "dataSrc": ""
         },
         "columns": [
-            { 
-            	"data": "email" 
+            {
+            	"data": "email"
             },
-            { 
+            {
             	"data" : "enabled",
             	"render" : function (data,type,row){
             		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"\"></div>";
@@ -31,7 +31,7 @@ $(document).ready(function() {
             			for(var i = 0;i<row.roles.length;i++){
             				if(row.roles[i].role == "ADMIN"){
             					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"\" checked disabled></div>";
-            					checkBox += "<input type = \"hidden\" value=\"on\" name=\""+row.email+"\">"; 
+            					checkBox += "<input type = \"hidden\" value=\"on\" name=\""+row.email+"\">";
             				}
             			}
             		}
@@ -40,37 +40,38 @@ $(document).ready(function() {
             }
         ]
     });
-	
-	
+
+
 	//Onclick of bottom nav-bar button, submit our datatable form
 	$('#datatable_form_submit').on('click',function(e){
 		e.preventDefault();
 		$('#user_enabled_form').submit();
+    dataTable.ajax.reload(null,false);
 	});
-	
+
 	//submit form via ajax post
 	$('#user_enabled_form').on('submit',function(e){
 		e.preventDefault();
-		
+
 		//var data = dataTable.$('input,select,textarea').serializeArray(); //used for input,select and textarea
-		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag 
-		
-		//merge the checked data with data that involves users whose enable status has been removed 
+		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag
+
+		//merge the checked data with data that involves users whose enable status has been removed
 		$.merge(data,extraData);
-		
+
 		sendData("/admin/manageUserEnabledStatus","POST",data);
 
 		alert("User Enabled Status Saved");
 	});
-	
+
 	$(document).on('click','input[type="checkbox"]', function(){
 		var email = $(this).attr("name");
 		var checked = $(this).prop('checked');
 		if(!checked){
 			extraData.push({name:email, value:"off"});
-		}		
+		}
 	});
-	
+
 } );
 </script>
 
@@ -82,7 +83,7 @@ $(document).ready(function() {
 <div id = "user" style="display:hidden">${user}</div>
 <div class ="container-fluid authenticated-margin">
 	<form id = "user_enabled_form">
-	
+
 		<table id="user_table" class="table table-striped table-bordered">
 		    <thead>
 		        <tr>
@@ -90,7 +91,7 @@ $(document).ready(function() {
 		            <th>ENABLED</th>
 		        </tr>
 		    </thead>
-		</table>	
+		</table>
 	</form>
 </div>
 </body>
