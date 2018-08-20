@@ -39,7 +39,7 @@ $(document).ready(function() {
 	$('#datatable_form_submit').on('click',function(e){
 		e.preventDefault();
 		$('#delete_user_form').submit();
-    dataTable.ajax.reload(null,false);
+    	dataTable.ajax.reload(null,false);
 	});
 
 	//submit form via ajax post
